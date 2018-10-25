@@ -1,6 +1,7 @@
 require 'rspec'
 require_relative 'task'
 
+
 describe Task do
     let(:task) {Task.new("title", "I'm a description", true)}
     # Story: As a developer, I can create a Task.

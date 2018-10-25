@@ -1,3 +1,4 @@
+require 'date'
 class Task
     attr_accessor :title, :description, :completed
 

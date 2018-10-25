@@ -1,21 +1,35 @@
 
 require_relative 'task'
+require_relative 'due_date_task'
 
 class Task_list
-    attr_accessor :all_tasks, :completed_tasks, :incompleted_tasks
+    attr_accessor :all_tasks, :completed_tasks, :incompleted_tasks, :all_tasks_with_date, :completed_tasks_with_date, :incompleted_tasks_with_date
+
     def initialize()
         @all_tasks = []
         @completed_tasks = []
         @incompleted_tasks = []
+        @all_tasks_with_date = []
+        @completed_tasks_with_date = []
+        @incompleted_tasks_with_date = []
     end
 
     def add_to_lists(task)
-        if task.class == Task
+        if task.class == Due_date_task
+            @all_tasks_with_date << task
+
+            if task.completed == true
+                @completed_tasks_with_date << task
+            else
+                @incompleted_tasks_with_date << task
+            end
+            true
+            #break ***** will need to play with this more
+        elsif task.class == Task
             @all_tasks << task
 
             if task.completed == true
                 @completed_tasks << task
-                # p @completed_tasks
             else
                 @incompleted_tasks << task
             end
@@ -26,8 +40,6 @@ class Task_list
         end
     end
 
-end
 
-# my_task = Task.new("title", "describe me", true)
-# my_list = Task_list.new
-# my_list.add_to_lists(my_task)
+end
+## TODO: verify add_to_lists method is only adding tasks with dates to thier respective array

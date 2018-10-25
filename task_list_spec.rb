@@ -38,9 +38,14 @@ describe Task_list do
         expect(task_list.incompleted_tasks).to be_a(Array)
     end
 
+    it "Can add tasks with date items to array." do
+        my_task_date = Due_date_task.new("title", "description", 2018, 10, 25)
+        expect{task_list.add_to_lists(my_task_date)}.to change{task_list.all_tasks_with_date.count}.by(1)
+    end
+
+    it "Is an array of tasks with dates" do
+        expect(task_list.all_tasks_with_date).to be_a(Array)
+    end
+
 
 end
-
-
-
-# # TODO: Story: As a developer with a TaskList, I can get the incomplete items.
